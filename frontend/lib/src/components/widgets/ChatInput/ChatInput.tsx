@@ -184,6 +184,16 @@ function ChatInput({
       width={width}
     >
       <StyledChatInput>
+        <StyledFileIconButtonContainer>
+          <StyledFileIconButton
+            onClick={handleSubmit}
+            disabled={!dirty || disabled}
+            extended={isInputExtended}
+            data-testid="stChatInputSubmitButton"
+          >
+            <Icon content={File} size="xl" color="inherit" />
+          </StyledFileIconButton>
+        </StyledFileIconButtonContainer>
         <UITextArea
           inputRef={chatInputRef}
           value={value}
