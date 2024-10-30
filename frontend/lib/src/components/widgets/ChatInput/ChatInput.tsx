@@ -189,7 +189,7 @@ function ChatInput({
             onClick={handleSubmit}
             disabled={!dirty || disabled}
             extended={isInputExtended}
-            data-testid="stChatInputSubmitButton"
+            data-testid="stChatFileInputButton"
           >
             <Icon content={File} size="xl" color="inherit" />
           </StyledFileIconButton>
