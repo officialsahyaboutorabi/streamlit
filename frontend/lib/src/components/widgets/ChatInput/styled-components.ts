@@ -48,6 +48,11 @@ interface StyledSendIconButtonProps {
   extended: boolean
 }
 
+interface StyledFileIconButtonProps {
+  disabled: boolean
+  extended: boolean
+}
+
 export const StyledSendIconButton = styled.button<StyledSendIconButtonProps>(
   ({ theme, disabled, extended }) => {
     const lightTheme = hasLightBackgroundColor(theme)
@@ -93,6 +98,59 @@ export const StyledSendIconButton = styled.button<StyledSendIconButtonProps>(
 )
 
 export const StyledSendIconButtonContainer = styled.div({
+  display: "flex",
+  alignItems: "flex-end",
+  height: "100%",
+  position: "absolute",
+  right: 0,
+  pointerEvents: "none",
+})
+
+export const StyledFileIconButton = styled.button<StyledSendIconButtonProps>(
+  ({ theme, disabled, extended }) => {
+    const lightTheme = hasLightBackgroundColor(theme)
+    const [cleanIconColor, dirtyIconColor] = lightTheme
+      ? [theme.colors.gray60, theme.colors.gray80]
+      : [theme.colors.gray80, theme.colors.gray40]
+    return {
+      border: "none",
+      backgroundColor: theme.colors.transparent,
+      borderTopRightRadius: extended ? "0" : theme.radii.default,
+      borderTopLeftRadius: extended ? theme.radii.default : "0",
+      borderBottomRightRadius: theme.radii.default,
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      lineHeight: theme.lineHeights.none,
+      margin: theme.spacing.none,
+      padding: theme.spacing.sm,
+      color: disabled ? cleanIconColor : dirtyIconColor,
+      pointerEvents: "auto",
+      "&:focus": {
+        outline: "none",
+      },
+      ":focus": {
+        outline: "none",
+      },
+      "&:focus-visible": {
+        backgroundColor: lightTheme
+          ? theme.colors.gray10
+          : theme.colors.gray90,
+      },
+      "&:hover": {
+        backgroundColor: theme.colors.primary,
+        color: theme.colors.white,
+      },
+      "&:disabled, &:disabled:hover, &:disabled:active": {
+        backgroundColor: theme.colors.transparent,
+        borderColor: theme.colors.transparent,
+        color: theme.colors.gray,
+      },
+    }
+  }
+)
+
+export const StyledFileIconButtonContainer = styled.div({
   display: "flex",
   alignItems: "flex-end",
   height: "100%",
